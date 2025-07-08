@@ -1,0 +1,66 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+/* #box {
+  background-color: blue;
+}
+.heading {
+  color: red;
+}
+button {
+  background-color: green;
+} */
+/* h1 {
+  text-align: center;
+  text-transform: capitalize;
+  text-decoration: blue wavy line-through;
+}
+p {
+  font-family: "Times New Roman", Times, serif;
+  text-align: justify;
+   text-decoration: wavy overline; 
+}
+#outer {
+  font-size: 25px;
+}
+#inner {
+  font-size: 10px;
+}
+#box {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  background-color: green;
+  padding: 20px;
+} */
+.logo {
+  text-decoration: none;
+  color: orange;
+  font-size: 25px;
+  /* position: absolute;
+  top: 10px;
+  left: 10px; */
+  /* padding-right: 900px; */
+}
+.nav {
+  background-color: black;
+  padding-bottom: 20px;
+  padding-top: 10px;
+  font-size: 20px;
+  display: flex;
+  justify-content: space-between;
+  flex-flow: row wrap;
+}
+a {
+  text-decoration: none;
+  color: white;
+}
+#btn {
+  color: white;
+  background-color: orange;
+}
+.search {
+  position: relative;
+  right: 150px;
+}

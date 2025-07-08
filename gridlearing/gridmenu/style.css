@@ -1,0 +1,33 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.container {
+  display: grid;
+  grid-template-columns: 50px 1fr 100px;
+  grid-template-rows: auto auto auto;
+  grid-template-areas:
+    "content  header header"
+    "content header header"
+    "content footer footer";
+  background-color: black;
+  /* gap: 20px; */
+  height: 100vh;
+  width: 100vw;
+}
+
+.item1 {
+  grid-area: header;
+  background-color: green;
+  /* height: 90px; */
+  /* width: 100vw; */
+}
+.item-2 {
+  grid-area: content;
+  background-color: blue;
+}
+.item-3 {
+  grid-area: footer;
+  background-color: red;
+}

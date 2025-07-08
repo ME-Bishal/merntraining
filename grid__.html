@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Layout Techniques</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 40px;
+            color: #4a5568;
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        .section {
+            margin-bottom: 50px;
+            background: #f8fafc;
+            border-radius: 15px;
+            padding: 25px;
+            border-left: 5px solid #667eea;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #2d3748;
+            font-weight: 600;
+        }
+
+        .description {
+            margin-bottom: 20px;
+            color: #4a5568;
+            background: #e2e8f0;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+        }
+
+        /* CSS Grid Auto-Fit */
+        .grid-auto-fit {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        /* Flexbox Wrap */
+        .flex-wrap {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .flex-wrap .item {
+            flex: 1 1 250px;
+            min-width: 0;
+        }
+
+        /* Media Query Grid */
+        .media-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        @media (max-width: 900px) {
+            .media-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 700px) {
+            .media-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+ 
+        @media (min-width: 500px) {
+            .media-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .container-query {
+            container-type: inline-size;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        @container (max-width: 600px) {
+            .container-query {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Card Styles */
+        .item {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .item:hover::before {
+            left: 100%;
+        }
+
+        .item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.4);
+        }
+
+        .item h3 {
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .item p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            line-height: 1.5;
+        }
+
+        /* Width indicator */
+        .width-indicator {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 14px;
+            z-index: 1000;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .main-container {
+                padding: 20px;
+                margin: 10px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="width-indicator" id="widthIndicator">
+        Width: <span id="currentWidth"></span>px
+    </div>
+
+    <div class="main-container">
+        <h1>Responsive Layout Techniques</h1>
+        
+        <div class="section">
+            <h2 class="section-title">1. CSS Grid with Auto-Fit</h2>
+            <div class="description">
+                <strong>grid-template-columns: repeat(auto-fit, minmax(250px, 1fr))</strong><br>
+                Automatically wraps items when they can't fit, maintaining minimum width of 250px.
+            </div>
+            <div class="grid-auto-fit">
+                <div class="item">
+                    <h3>Card 1</h3>
+                    <p>This card will automatically wrap to new rows based on available space.</p>
+                </div>
+                <div class="item">
+                    <h3>Card 2</h3>
+                    <p>Resize your browser window to see the magic happen!</p>
+                </div>
+                <div class="item">
+                    <h3>Card 3</h3>
+                    <p>Each card maintains its minimum width while growing to fill space.</p>
+                </div>
+                <div class="item">
+                    <h3>Card 4</h3>
+                    <p>Perfect for responsive card layouts and galleries.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">2. Flexbox with Flex-Wrap</h2>
+            <div class="description">
+                <strong>display: flex; flex-wrap: wrap; flex: 1 1 250px</strong><br>
+                Similar to CSS Grid but uses flexbox properties for wrapping behavior.
+            </div>
+            <div class="flex-wrap">
+                <div class="item">
+                    <h3>Flex Card 1</h3>
+                    <p>Flexbox wrapping provides great control over item distribution.</p>
+                </div>
+                <div class="item">
+                    <h3>Flex Card 2</h3>
+                    <p>Items grow and shrink based on available space.</p>
+                </div>
+                <div class="item">
+                    <h3>Flex Card 3</h3>
+                    <p>Great for navigation menus and button groups.</p>
+                </div>
+                <div class="item">
+                    <h3>Flex Card 4</h3>
+                    <p>Flexible and widely supported across browsers.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">3. Media Query Breakpoints</h2>
+            <div class="description">
+                <strong>@media (max-width: Xpx) with different grid-template-columns</strong><br>
+                Explicit control over layout at specific screen sizes: 4→3→2→1 columns.
+            </div>
+            <div class="media-grid">
+                <div class="item">
+                    <h3>Media Card 1</h3>
+                    <p>4 columns on large screens, 3 on medium, 2 on small, 1 on mobile.</p>
+                </div>
+                <div class="item">
+                    <h3>Media Card 2</h3>
+                    <p>Precise control over breakpoints and layout changes.</p>
+                </div>
+                <div class="item">
+                    <h3>Media Card 3</h3>
+                    <p>Traditional responsive design approach.</p>
+                </div>
+                <div class="item">
+                    <h3>Media Card 4</h3>
+                    <p>Perfect when you need exact control over layouts.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">4. Container Queries (Modern)</h2>
+            <div class="description">
+                <strong>container-type: inline-size with @container queries</strong><br>
+                Responds to container size rather than viewport - the future of responsive design!
+            </div>
+            <div class="container-query">
+                <div class="item">
+                    <h3>Container Card 1</h3>
+                    <p>Responds to the container's width, not the viewport width.</p>
+                </div>
+                <div class="item">
+                    <h3>Container Card 2</h3>
+                    <p>More flexible than media queries for component-based design.</p>
+                </div>
+                <div class="item">
+                    <h3>Container Card 3</h3>
+                    <p>Ideal for reusable components that need to adapt.</p>
+                </div>
+                <div class="item">
+                    <h3>Container Card 4</h3>
+                    <p>Supported in modern browsers - the future is here!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Update width indicator
+        function updateWidth() {
+            const width = window.innerWidth;
+            document.getElementById('currentWidth').textContent = width;
+        }
+
+        updateWidth();
+        window.addEventListener('resize', updateWidth);
+
+        // Add some interactive feedback
+        document.querySelectorAll('.item').forEach(item => {
+            item.addEventListener('click', function() {
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 150);
+            });
+        });
+    </script>
+</body>
+</html>

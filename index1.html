@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="tab-btn">
+      <!-- <h1>This is a heading</h1> -->
+      <span id="tab1" onclick="tabButton('tab1')">tab1</span>
+    </div>
+    <script>
+      function tabButton() {
+        const btn = document.querySelectorAll("tab-btn");
+        btn.style.color = "red";
+        console.log(btn);
+      }
+    </script>
+  </body>
+</html>
